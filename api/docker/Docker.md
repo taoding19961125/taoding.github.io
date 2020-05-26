@@ -2,7 +2,7 @@
 
 ### 一、Docker的概念
 
-<img src="https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/docker_icon.png" alt="1586619756471" style="zoom:80%;" />
+<img src="..\..\images\docker\docker_icon.png" alt="1586619756471" style="zoom:80%;" />
 
 - Docker 是一个开源的应用容器引擎
 
@@ -24,7 +24,7 @@ Docker 是为解决开发环境、测试环境以及生产环境中，可能出�
 
 
 
-![1586620255057](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1586620255057.png)
+![1586620255057](..\..\images\docker\1586620255057.png)
 
 
 
@@ -52,15 +52,15 @@ Docker 是为解决开发环境、测试环境以及生产环境中，可能出�
 
 1. ##### Win10 下需先开启 Hyper-V 功能 。
 
-   ![1586621388649](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1586621388649.png)
+   ![1586621388649](..\..\images\docker\1586621388649.png)
 
    
 
 2. ##### 安装Toolbox ( https://hub.docker.com/editions/community/docker-ce-desktop-windows  ）。
 
-   <img src="https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1586698883269.png" style="zoom:80%;" />
+   <img src="..\..\images\docker\1586698883269.png" style="zoom:80%;" />
    
-   <img src="https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1586698963244.png" style="zoom:80%;" />
+   <img src="..\..\images\docker\1586698963244.png" style="zoom:80%;" />
    
    
    
@@ -71,7 +71,7 @@ Docker 是为解决开发环境、测试环境以及生产环境中，可能出�
    docker version 
    ```
 
-   <img src="https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1586699764244.png" alt="1586699764244" style="zoom:80%;" />
+   <img src="..\..\images\docker\1586699764244.png" alt="1586699764244" style="zoom:80%;" />
 
    
 
@@ -93,7 +93,7 @@ Docker 是为解决开发环境、测试环境以及生产环境中，可能出�
    yum install -y yum-utils device-mapper-persistent-data lvm2
    ```
 
-<img src="https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1586701813520.png" style="zoom: 80%;" />
+<img src="..\..\images\docker\1586701813520.png" style="zoom: 80%;" />
 
 
 
@@ -104,7 +104,7 @@ Docker 是为解决开发环境、测试环境以及生产环境中，可能出�
    yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
    ```
 
-   ![1586701308548](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1586701308548.png)
+   ![1586701308548](..\..\images\docker\1586701308548.png)
 
    
 
@@ -115,7 +115,7 @@ Docker 是为解决开发环境、测试环境以及生产环境中，可能出�
    yum install -y docker-ce
    ```
 
-   <img src="https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1586702153413.png" alt="1586702153413" style="zoom:80%;" />
+   <img src="..\..\images\docker\1586702153413.png" alt="1586702153413" style="zoom:80%;" />
 
    
 
@@ -126,7 +126,7 @@ Docker 是为解决开发环境、测试环境以及生产环境中，可能出�
    docker -v
    ```
 
-   <img src="https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1586702194733.png" alt="1586702194733" style="zoom:80%;" />
+   <img src="..\..\images\docker\1586702194733.png" alt="1586702194733" style="zoom:80%;" />
 
 
 
@@ -140,7 +140,7 @@ Docker 是为解决开发环境、测试环境以及生产环境中，可能出�
 
 
 
-![1587910610515](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1587910610515.png)
+![1587910610515](..\..\images\docker\1587910610515.png)
 
 
 
@@ -188,7 +188,7 @@ Docker 官方和国内很多云服务商都提供了国内加速器服务，例�
 
 每个阿里云账号的加速地址是唯一专属的（ https://<你的ID>.mirror.aliyuncs.com ）。登录网址 https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors ，左侧菜单选中镜像加速器即可查看你的专属地址。
 
-![1588307453732](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/aliyun_mirror.png)
+![1588307453732](..\..\images\docker\aliyun_mirror.png)
 
 
 
@@ -216,13 +216,13 @@ Docker 官方和国内很多云服务商都提供了国内加速器服务，例�
 
  		直接执行命令，并 cat 查看是否存在其内容：
 
-<img src="https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/centos_mirror.png" alt="1588309409017" style="zoom:150%;" />
+<img src="..\..\images\docker\centos_mirror.png" alt="1588309409017" style="zoom:150%;" />
 
 
 
    （ 2 ）Windows 10 ：Docker — Setting 下加入你的镜像加速地址 , 点击 Apply&Restart 保存后 Docker 就会重启并应用配置的镜像地址了。
 
-   ![1588309743243](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/windows_mirror.png)
+   ![1588309743243](..\..\images\docker\windows_mirror.png)
 
 
 
@@ -235,7 +235,7 @@ Docker 官方和国内很多云服务商都提供了国内加速器服务，例�
 docker info
 ```
 
-![1588310095725](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/docker-info.png)
+![1588310095725](..\..\images\docker\docker-info.png)
 
 
 
@@ -247,7 +247,7 @@ docker info
 
 > 这部分包含主要三部分命令：服务相关命令、镜像相关命令、容器相关命令。对应图中的 daemon 、image 和 container 三部分。
 
-![1588310978813](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/docker_parts.png)
+![1588310978813](..\..\images\docker\docker_parts.png)
 
 ### 一、 服务相关命令
 
@@ -279,11 +279,11 @@ docker info
 
   开启时：active (running)
 
-  ![1588312026700](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588312026700.png)
+  ![1588312026700](..\..\images\docker\1588312026700.png)
 
   关闭时：inactive (dead)
 
-  ![1588312191114](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588312191114.png)
+  ![1588312191114](..\..\images\docker\1588312191114.png)
 
   
 
@@ -293,7 +293,7 @@ docker info
   systemctl enable docker
   ```
 
-  ![1588312289609](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588312289609.png)
+  ![1588312289609](..\..\images\docker\1588312289609.png)
 
   
 
@@ -310,11 +310,11 @@ docker info
 
   默认为空：
 
-  ![1588312828505](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588312828505.png)
+  ![1588312828505](..\..\images\docker\1588312828505.png)
 
   拉取后查看：
 
-  ![1588316642942](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588315463118.png)
+  ![1588316642942](..\..\images\docker\1588315463118.png)
 
   其中字段TAG是该镜像的版本信息，IMAGE ID是镜像的唯一ID。
 
@@ -322,9 +322,9 @@ docker info
 
   如下图：点开，其指向的都是6这个版本。
 
-  ![1588316956519](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588316956519.png)
+  ![1588316956519](..\..\images\docker\1588316956519.png)
 
-  ![1588317058036](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588317058036.png)
+  ![1588317058036](..\..\images\docker\1588317058036.png)
 
   
 
@@ -336,7 +336,7 @@ docker info
   docker search 镜像名称
   ```
 
-  ![1588313255318](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588313255318.png)
+  ![1588313255318](..\..\images\docker\1588313255318.png)
 
   其中字段 NAME 代表其镜像名称，DESCRIPTION 是该镜像的相关描述介绍，STARS 类似于Github 上的星数，<font color='red'>OFFICIAL 是否官方的（标示OK的为官方）</font>，AUTOMATED 是否自动流程构建的。
 
@@ -350,7 +350,7 @@ docker info
   docker pull 镜像名称
   ```
 
-  ![1588314260974](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588314260974.png)
+  ![1588314260974](..\..\images\docker\1588314260974.png)
 
 
 
@@ -369,19 +369,19 @@ docker info
 
   现有本地镜像：
 
-  ![1588316642942](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588315463118.png)
+  ![1588316642942](..\..\images\docker\1588315463118.png)
 
   这里我们执行 docker rmi 96812ab2b931 （IMAGE ID 方式）来删除 Redis 镜像，发现该ID指向多个镜像仓库源，报错。
 
-  ![1588317323038](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588317323038.png)
+  ![1588317323038](..\..\images\docker\1588317323038.png)
 
   此时我们可以通过 docker  REPOSITORY :TAG 方式来删除本地镜像，如下图所示。
 
-  ![1588317975223](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588317975223.png)
+  ![1588317975223](..\..\images\docker\1588317975223.png)
 
   但此时，本地镜像并没有真正被删除，因为仍被 TAG 为 latest 的 redis 镜像所引用。不过，我们如果尝试去删除 IAMGE ID 在本地仅有一个引用的镜像时，如删除 TAG 为 8 的 mysql , 镜像将会被真正删除。
 
-  ![1588318510242](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588318510242.png)
+  ![1588318510242](..\..\images\docker\1588318510242.png)
 
 
 
@@ -400,11 +400,11 @@ docker info
 
   默认无：
 
-  ![1588320850978](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588320850978.png)
+  ![1588320850978](..\..\images\docker\1588320850978.png)
 
   后续创建后查看：
 
-![1588325865347](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588325865347.png)
+![1588325865347](..\..\images\docker\1588325865347.png)
 
 
 
@@ -427,7 +427,7 @@ docker info
 
      例：创建一个 Centos 容器：也可缩写成 docker run -it --name=c_centos centos:7 。
 
-![1588322605602](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588322605602.png)
+![1588322605602](..\..\images\docker\1588322605602.png)
 
 ​					其中 centos:7 也可用 IMAGE ID 来替换 , 只要能保证可以指定唯一镜像，写成 docker run -it --					name=c_centos  5e35e350aded 。
 
@@ -435,7 +435,7 @@ docker info
 
 ​					<font color='red'>② -it 方式创建的容器，执行 exit 退出容器后将回到宿主机，同时容器自动关闭 。</font>如下图所示：
 
-![1588324227639](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588324227639.png)
+![1588324227639](..\..\images\docker\1588324227639.png)
 
 
 
@@ -443,15 +443,15 @@ docker info
 
    例：创建一个 Centos 容器：docker run -id --name=c_centos02  centos:7 。
 
-   ![1588325090276](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588325090276.png)
+   ![1588325090276](..\..\images\docker\1588325090276.png)
 
    <font color='red'>*以 -id 方式创建的容器，将以守护（后台）模式运行。容器创建成功后不会自动进入容器内部 ，需要使用 docker exec 进入容器 ( “/bin/bash” 为进入容器的初始化指令，docker ps -a 后 COMMAND 字段可见 ) 。*</font>如下图：
 
-![1588325412570](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588325412570.png)
+![1588325412570](..\..\images\docker\1588325412570.png)
 
 <font color='red'>	*以 -id 方式创建的容器，exit 退出后，容器不会关闭。</font>
 
-![1588325827087](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588325827087.png)
+![1588325827087](..\..\images\docker\1588325827087.png)
 
 
 
@@ -462,9 +462,9 @@ docker info
   docker exec 参数 
   ```
 
-  ![1588325412570](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588325412570.png)
+  ![1588325412570](..\..\images\docker\1588325412570.png)
 
-  ![1588325827087](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588325827087.png)
+  ![1588325827087](..\..\images\docker\1588325827087.png)
 
   
 
@@ -474,7 +474,7 @@ docker info
   docker stop 容器名称/ID
   ```
 
-  ![1588330135540](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588330135540.png)
+  ![1588330135540](..\..\images\docker\1588330135540.png)
 
   
 
@@ -484,7 +484,7 @@ docker info
   docker start 容器名称/ID
   ```
 
-  ![1588330193696](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588330193696.png)
+  ![1588330193696](..\..\images\docker\1588330193696.png)
 
   
 
@@ -499,7 +499,7 @@ docker info
   docker rm `docker ps -aq`
   ```
 
-  ![1588330350303](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588330350303.png)
+  ![1588330350303](..\..\images\docker\1588330350303.png)
 
   <font color='red'>**如果容器是运行状态则删除失败，需要停止容器才能删除 。*</font>
 
@@ -509,7 +509,7 @@ docker info
   docker inspect 容器名称/ID
   ```
 
-  ![1588330985407](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588330985407.png)
+  ![1588330985407](..\..\images\docker\1588330985407.png)
 
 
 
@@ -567,7 +567,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
 
 1. ##### **一个容器挂载一个数据卷**
 
-   ![1588497726677](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588497726677.png)
+   ![1588497726677](..\..\images\docker\1588497726677.png)
 
    - 创建启动容器时，使用 –v 参数设置数据卷	
 
@@ -582,21 +582,21 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
 
    ​         这里我们创建一个名为 c_tomcat 的容器，挂载宿主机目录 /root/taoding 至 容器目录 /usr/local/tomcat/project_data 中（ 实际情况下，我们可以直接挂载至 c_tomcat 容器下 webapps 目录，方便以后部署系统 ），如下图所示：
 
-![](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588474469446.png)
+![](..\..\images\docker\1588474469446.png)
 
-![1588478098399](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588478098399.png)
+![1588478098399](..\..\images\docker\1588478098399.png)
 
 ​	  	   我们在宿主机挂载目录下或容器挂载目录下操作文件，对方会立即同步修改 。这里我们在容器内挂载			目录中创建一名为 test.txt 的文件，宿主机相应目录也相应生成改文件 。进一步在宿主机中修改 test.txt 文			件中内容，容器内相应文件也立即响应该修改 。
 
-![1588478771577](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588478771577.png)
+![1588478771577](..\..\images\docker\1588478771577.png)
 
 
 
 2.  **多个容器挂载同一数据卷，<font color='red'>实现容器间通讯</font>**
 
-   <img src="https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588497636547.png" alt="1588497636547" style="zoom:67%;" />
+   <img src="..\..\images\docker\1588497636547.png" alt="1588497636547" style="zoom:67%;" />
 
-   ![1588480940684](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588480940684.png)
+   ![1588480940684](..\..\images\docker\1588480940684.png)
 
 
 
@@ -610,7 +610,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
 
 **数据卷容器**： 命名的容器挂载数据卷，其他的容器通过挂载这个父容器实现数据共享，挂载数据卷的容器，我们称为数据卷容器。 
 
-<img src="https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588497901897.png" alt="1588497901897" style="zoom:67%;" />
+<img src="..\..\images\docker\1588497901897.png" alt="1588497901897" style="zoom:67%;" />
 
 
 
@@ -620,7 +620,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
   docker run –it --name ... –v 宿主机目录(文件):容器内目录(文件) ...
   ```
 
-![1588589064068](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588589064068.png)
+![1588589064068](..\..\images\docker\1588589064068.png)
 
 
 
@@ -633,13 +633,13 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
 
  
 
-![1588589378031](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588589378031.png)
+![1588589378031](..\..\images\docker\1588589378031.png)
 
-![1588589476360](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588589476360.png)
+![1588589476360](..\..\images\docker\1588589476360.png)
 
 此时，我们在这些容器中操作数据或文件，其他容器或数据卷容器也将相应发生变化 。<font color='red'>即使容器所绑定的数据卷容器损坏或被删除，其下绑定的容器也可正常使用。</font>
 
-![1588590425018](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588590425018.png)
+![1588590425018](..\..\images\docker\1588590425018.png)
 
 
 
@@ -661,7 +661,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
 
 针对可能遇见的问题：容器内的网络服务和外部机器不能直接通信，我们可以采取<font color='red'>**端口映射**</font>的方式解决。
 
-![1588592104946](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588592104946.png)
+![1588592104946](..\..\images\docker\1588592104946.png)
 
 解释：容器内的网络服务和外部机器不能直接通信，外部机器和宿主机可以直接通信，宿主机和容器可以直接通信 。当容器中的网络服务需要被外部机器访问时，可以将容器中提供服务的端口映射到宿主机的端口上 。外部机器访问宿主机的该端口，从而间接访问容器的服务 。
 
@@ -671,7 +671,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    docker search mysql
    ```
 
-   ![1588592256172](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588592256172.png)
+   ![1588592256172](..\..\images\docker\1588592256172.png)
 
    
 
@@ -681,7 +681,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    docker pull mysql:5.6
    ```
 
-   ![1588592463665](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588592463665.png)
+   ![1588592463665](..\..\images\docker\1588592463665.png)
 
    
 
@@ -697,7 +697,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
     mysql:8
    ```
 
-   ![1588595823370](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588595823370.png)
+   ![1588595823370](..\..\images\docker\1588595823370.png)
 
    参数说明：
 
@@ -719,7 +719,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
 
 5. **使用外部机器连接容器中的 MySQL** 
 
-   ![1588596740042](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588596740042.png)
+   ![1588596740042](..\..\images\docker\1588596740042.png)
 
    
 
@@ -733,7 +733,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    docker search tomcat
    ```
 
-![1588597133373](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588597133373.png)
+![1588597133373](..\..\images\docker\1588597133373.png)
 
 
 
@@ -743,7 +743,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    docker pull tomcat
    ```
 
-![1588597251652](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588597251652.png)
+![1588597251652](..\..\images\docker\1588597251652.png)
 
 
 
@@ -756,7 +756,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    tomcat:8
    ```
 
-![1588597336260](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588597336260.png)
+![1588597336260](..\..\images\docker\1588597336260.png)
 
 参数说明：
 
@@ -769,7 +769,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
 
 4. **使用外部机器访问 Tomcat**
 
-   ![1588598379469](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588598379469.png)
+   ![1588598379469](..\..\images\docker\1588598379469.png)
 
 
 
@@ -783,7 +783,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    docker search nginx
    ```
 
-   ![1588598703938](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588598703938.png)
+   ![1588598703938](..\..\images\docker\1588598703938.png)
 
    
 
@@ -793,7 +793,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    docker pull nginx
    ```
 
-   ![1588598768426](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588598768426.png)
+   ![1588598768426](..\..\images\docker\1588598768426.png)
 
    
 
@@ -852,7 +852,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    nginx
    ```
 
-   ![1588599756626](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588599756626.png)
+   ![1588599756626](..\..\images\docker\1588599756626.png)
 
    
 
@@ -867,11 +867,11 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
 
 4. 在 /root/taoding/nginx/html 目录下创建测试页面，使用外部机器访问 Nginx
 
-   ![1588600612108](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588600612108.png)
+   ![1588600612108](..\..\images\docker\1588600612108.png)
 
    
 
-   ![1588600589779](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588600589779.png)
+   ![1588600589779](..\..\images\docker\1588600589779.png)
 
    
 
@@ -885,7 +885,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    docker search redis
    ```
 
-   ![1588600925913](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588600925913.png)
+   ![1588600925913](..\..\images\docker\1588600925913.png)
 
    
 
@@ -895,7 +895,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    docker pull redis
    ```
 
-   ![1588600997376](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588600997376.png)
+   ![1588600997376](..\..\images\docker\1588600997376.png)
 
 
 
@@ -905,13 +905,13 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    docker run -id --name=c_redis -p 6379:6379 redis
    ```
 
-   ![1588601100658](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588601100658.png)
+   ![1588601100658](..\..\images\docker\1588601100658.png)
 
    
 
 4. **使用外部机器连接 Redis**
 
-   ![1588601240510](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588601240510.png)
+   ![1588601240510](..\..\images\docker\1588601240510.png)
 
    
 
@@ -923,7 +923,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    docker search zookeeper 
    ```
 
-   ![1588601658471](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588601658471.png)
+   ![1588601658471](..\..\images\docker\1588601658471.png)
 
    
 
@@ -933,7 +933,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    docker pull zookeeper
    ```
 
-   ![1588601699645](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588601699645.png)
+   ![1588601699645](..\..\images\docker\1588601699645.png)
 
 
 
@@ -943,7 +943,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    docker run -id --name=c_zookeeper -p 2182:2182 zookeeper
    ```
 
-   ![1588601778519](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588601778519.png)
+   ![1588601778519](..\..\images\docker\1588601778519.png)
 
    
 
@@ -953,7 +953,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
    docker logs -f zk容器名称
    ```
 
-   ![1588603272439](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588603272439.png)
+   ![1588603272439](..\..\images\docker\1588603272439.png)
 
 
 
@@ -979,7 +979,7 @@ Docker 的镜像是由一系列的只读层组合而来，当启动一个容器�
 
 ​								   <font color='red'>• 文件管理子系统</font>    • 网络通信子系统    • 作业控制子系统
 
-![1588604064938](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588604064938.png)
+![1588604064938](..\..\images\docker\1588604064938.png)
 
 Linux文件系统由 bootfs 和 rootfs 两部分组成：
 
@@ -989,7 +989,7 @@ Linux文件系统由 bootfs 和 rootfs 两部分组成：
 
 相似的，Docker 镜像原理：
 
-<img src="https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588604503807.png" alt="1588604503807" style="zoom: 67%;" />
+<img src="..\..\images\docker\1588604503807.png" alt="1588604503807" style="zoom: 67%;" />
 
 - Docker 镜像是由特殊的文件系统叠加而成
 - 最底端是 bootfs，并使用宿主机的 bootfs
@@ -1020,7 +1020,7 @@ Linux文件系统由 bootfs 和 rootfs 两部分组成：
 docker commit  容器id  镜像名称: 版本号
 ```
 
-![1588605524917](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588605524917.png)
+![1588605524917](..\..\images\docker\1588605524917.png)
 
 <font color='red'>注意：在将容器转为镜像时，容器所通过目录挂载方式生成的文件夹及其文件将不被保留，其它挂载目录以外的文件，包含人为操作产生的数据及文件将被保留 。即目录挂载的都不生效 。</font>
 
@@ -1032,7 +1032,7 @@ docker commit  容器id  镜像名称: 版本号
 docker save -o  压缩文件名称  镜像名称:版本号
 ```
 
-![1588605948697](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588605948697.png)
+![1588605948697](..\..\images\docker\1588605948697.png)
 
 
 
@@ -1042,7 +1042,7 @@ docker save -o  压缩文件名称  镜像名称:版本号
 docker load  –i  压缩文件名称
 ```
 
-![1588606129342](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588606129342.png)
+![1588606129342](..\..\images\docker\1588606129342.png)
 
 
 
@@ -1086,15 +1086,15 @@ docker load  –i  压缩文件名称
 
 我们在编写 Dockerfile 时，可在 Docker Hub （ https://hub.docker.com/ ）上搜索镜像，模仿其写法进行编写。这里以 Tomcat 为例：
 
-![1588686442678](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588686442678.png)
+![1588686442678](..\..\images\docker\1588686442678.png)
 
 点击其中一个 Tags 
 
-![1588686503906](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588686503906.png)
+![1588686503906](..\..\images\docker\1588686503906.png)
 
 这边得到的就是其 Dockerfile 。
 
-![1588686651838](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588686651838.png)
+![1588686651838](..\..\images\docker\1588686651838.png)
 
 
 
@@ -1118,13 +1118,13 @@ CMD java -jar test.jar
 docker bulid –f dockerfile文件路径 –t 镜像名称:版本
 ```
 
-![1588685814996](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588685814996.png)
+![1588685814996](..\..\images\docker\1588685814996.png)
 
 检验是否成功：
 
-![1588686099683](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588686099683.png)
+![1588686099683](..\..\images\docker\1588686099683.png)
 
-![1588686141384](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588686141384.png)
+![1588686141384](..\..\images\docker\1588686141384.png)
 
 
 
@@ -1153,7 +1153,7 @@ Docker Compose 是一个编排多容器分布式部署的工具，提供命令�
 2. 使用 docker-compose.yml 定义组成应用的各服务
 3. 运行 docker-compose up 启动应用
 
-![1588687257349](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588687257349.png)
+![1588687257349](..\..\images\docker\1588687257349.png)
 
 
 
@@ -1172,7 +1172,7 @@ Docker Compose 是一个编排多容器分布式部署的工具，提供命令�
   docker-compose -version
   ```
 
-![1588774316510](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588774316510.png)
+![1588774316510](..\..\images\docker\1588774316510.png)
 
 
 
@@ -1249,13 +1249,13 @@ Docker Compose 是一个编排多容器分布式部署的工具，提供命令�
   docker-compose up
   ```
 
-  ![1588778208528](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588778208528.png)
+  ![1588778208528](..\..\images\docker\1588778208528.png)
 
 
 
 - **测试访问**
 
-  ![1588778242580](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588778242580.png)
+  ![1588778242580](..\..\images\docker\1588778242580.png)
 
   
 
@@ -1281,7 +1281,7 @@ Docker Compose 是一个编排多容器分布式部署的工具，提供命令�
 
   验证：浏览器输入地址http://你的IP:5000/v2/_catalog，如看到  {"repositories":[]}  表示私有仓库搭建成功。
   
-  ![1588774793643](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588774793643.png)
+  ![1588774793643](..\..\images\docker\1588774793643.png)
   
   
 
@@ -1302,7 +1302,7 @@ Docker Compose 是一个编排多容器分布式部署的工具，提供命令�
   docker start registry
   ```
 
-  ![1588775006026](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588775006026.png)
+  ![1588775006026](..\..\images\docker\1588775006026.png)
   
   
 
@@ -1320,9 +1320,9 @@ Docker Compose 是一个编排多容器分布式部署的工具，提供命令�
   docker push 私有仓库服务器IP:5000/镜像名称:版本
   ```
 
-  ![1588776424899](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588776424899.png)
+  ![1588776424899](..\..\images\docker\1588776424899.png)
   
-  ![1588776487599](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588776487599.png)
+  ![1588776487599](..\..\images\docker\1588776487599.png)
   
   
   
@@ -1338,6 +1338,6 @@ Docker Compose 是一个编排多容器分布式部署的工具，提供命令�
   docker pull 私有仓库服务器ip:5000/镜像名称:版本
   ```
 
-  ![1588776563348](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1588776563348.png)
+  ![1588776563348](..\..\images\docker\1588776563348.png)
   
   
