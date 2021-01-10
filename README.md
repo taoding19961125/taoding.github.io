@@ -1,4 +1,4 @@
-> # 搭建中...
+> # mall学习教程
 >
 > [![公众号](https://camo.githubusercontent.com/270f294796b6faff72f6dcafc32f78aaa8e5989a/687474703a2f2f6d6163726f2d6f73732e6f73732d636e2d7368656e7a68656e2e616c6979756e63732e636f6d2f6d616c6c2f62616467652f2545352538352541432545342542432539372545352538462542372d6d6163726f7a68656e672d626c75652e737667)](https://github.com/macrozheng/mall-learning/blob/master/README.md#公众号) [![后台项目](https://camo.githubusercontent.com/cdc47d08f337d7118a6e9a07767944a2d90419dd/687474703a2f2f6d6163726f2d6f73732e6f73732d636e2d7368656e7a68656e2e616c6979756e63732e636f6d2f6d616c6c2f62616467652f2545352539302538452545352538462542302545392541312542392545372539422541452d6d616c6c2d626c75652e737667)](https://github.com/macrozheng/mall) [![前端项目](https://camo.githubusercontent.com/d23f48ca24c40f9b38644d593aa6674a36eac7ed/687474703a2f2f6d6163726f2d6f73732e6f73732d636e2d7368656e7a68656e2e616c6979756e63732e636f6d2f6d616c6c2f62616467652f2545352538392538442545372541422541462545392541312542392545372539422541452d6d616c6c2d2d61646d696e2d2d7765622d677265656e2e737667)](https://github.com/macrozheng/mall-admin-web) [![SpringCloud版本](https://camo.githubusercontent.com/50c36c4c9ac345aaca0c4a1db36dbca840a07c2c/687474703a2f2f6d6163726f2d6f73732e6f73732d636e2d7368656e7a68656e2e616c6979756e63732e636f6d2f6d616c6c2f62616467652f436c6f75642545372538392538382545362539432541432d6d616c6c2d2d737761726d2d627269676874677265656e2e737667)](https://github.com/macrozheng/mall-swarm)
 >
@@ -10,12 +10,13 @@
 >
 > > 测试数据一
 >
-> - [测试数据一](https://www.baidu.com)
-> - [测试数据二](https://www.baidu.com)
-> - [测试数据三](https://www.baidu.com)
-> - [测试数据四](https://www.baidu.com)
-> - [测试数据五](https://www.baidu.com)
-
+> - [IDEA常用设置及推荐插件](https://juejin.im/post/5d0458085188256aa76bc678)
+> - [Navicat实用功能：数据备份与结构同步](https://juejin.im/post/5d00fc865188255fc6384126)
+> - [Postman：API接口调试利器](https://juejin.im/post/5d5a9032e51d4561db5e3a4a)
+> - [10分钟搭建自己的Git仓库](https://juejin.im/post/5d63d600e51d453c135c5af3)
+> - [IDEA中的Git操作，看这一篇就够了！](https://juejin.im/post/5d667fc6e51d453b5d4d8da5)
+> - [虚拟机安装及使用Linux，看这一篇就够了！](https://juejin.im/post/5ddfd1665188256ec024cb7c)
+> - [推荐一个项目管理工具，落地基于Scrum的敏捷开发！](https://juejin.im/post/5e4200885188254944669a79)
 >
 > ## 公众号
 >
