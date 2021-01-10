@@ -26,9 +26,6 @@ Docker 是为解决开发环境、测试环境以及生产环境中，可能出�
 
 ![1586620255057](https://cdn.jsdelivr.net/gh/taoding19961125/cdn/images/docker/1586620255057.png)
 
-![image](https://github.com/taoding19961125/cdn/blob/master/images/docker/1586620255057.png)
-
-
 
 
 ### 三、Docker的应用场景
