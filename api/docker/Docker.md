@@ -2,6 +2,7 @@
 
 ### 一、Docker的概念
 
+![image](https://github.com/AngelSXD/sxd_first_repository/blob/master/images/20160615165142.png)
 <img src="../images/docker_icon.png" alt="1586619756471" style="zoom:80%;" />
 
 - Docker 是一个开源的应用容器引擎
