@@ -11,10 +11,15 @@
 - Annotation 的作用
 
   - 不是程序本身，可以对程序作出解释（这一点和注解（comment）没什么区别）
+  
   - <span style="color:red;">可以被其他程序（比如：编译器）读取</span>
+
 - Annotation 的格式：
+
   - 注解是以“@注释名”在代码中存在的，还可以添加一些参数值，例如：@SuppressWarnings(value="unchecked")
+
 - Annotation 在哪里使用？
+
   - 可以附加在 package、class、method、field 等上面，相当于给他们添加了额外的辅助信息，我们可以通过反射机制编程实现对这些元数据的访问 
 
 ### 二、注解分类
@@ -22,13 +27,17 @@
 **1.按来源分**
 
 - 内置注解（JDK自带）
+
 - 元注解
+
 - 自定义注解
 
 **2.按生命周期分**
 
 - SOURCE：只存在于源代码中，编译成 class 文件不复存在
+
 - Class：存在于源代码中和 class 文件中
+
 - RUNTIME：注解保留到运行时
 
 ------
@@ -38,12 +47,19 @@
 JavaSE中内置三个标准注解，定义在 java.lang 中，它们分别是：
 
 - **@Override**：定义在 java.lang.Override 中，此注释只适用于修辞方法，表示一个方法声明打算重写超类中的另一个方法声明
+
 - **@Deprecated**：定义在 java.lang.Deprecated 中，此注释可以用于修饰方法、属性、类，表示不鼓励程序员使用这样的元素，通常是因为它很危险或者存在更好的选择
+
 - **@SuppressWarnings**：定义在 java.lang.SuppressWarnings 中，用来抑制编译时的警告信息
+
   - 与前两个注释有所不同，你需要添加一个参数才嗯那个正确使用，这些参数都是已经定义好了的，我们选择性的使用就好了。
+
     1. @SuppressWarnings("all")
+
     2. @SuppressWarnings("unchecked")
+
     3. @SuppressWarnings(value = {"unchecked","deprecation"})
+
     4. ......
 
 参考代码：
@@ -88,10 +104,15 @@ public class BuiltInAnnotation {
 # 元注解
 
 - 元注解的作用就是负责注解其它注解，Java 定义了 4 个标准的 meta-annotation 类型，它们被用来提供对其它注解类型做说明
+
 - 这些类型和它们所支持的类在 java.lang.annotation 包中可以找到（@Target，@Retention，@Documented，@Inherited）
+
   - **@Target**：用于描述注解的使用范围（即：被描述的注解可以用在什么地方）
+
   - **@Retention**：表示需要在什么级别保存该注释信息，用于描述注解的生命周期（SOURCE < CLASS < RUNTIME）
+
   - **@Document**：说明该注解将被包含在 JavaDoc 中
+
   - **@Inherited**：说明子类可以继承父类中的该注解
 
 参考代码：
@@ -130,13 +151,21 @@ public class MetaAnnotation {
 # 自定义注解
 
 - 使用 @interface 自定义注解时，自动继承了 java.lang.annotation.Annotation 接口
+
 - 分析：
+
   - @interface 用来声明一个注解，格式：public @interface 注解名 {定义内容}
+
   - 其中的每一个方法实际上是声明了一个配置参数
+
   - 方法的名称就是参数的名称
+
   - 返回值类型就是参数的类型（返回值只能是基本类型，Class，String，enum）
+
   - 可以通过 default 来声明参数的默认值
+
   - 如果只有一个参数成员，一般参数名为 value
+
   - 注解元素必须要有值，我们定义注解元素时，经常使用空字符串，0 作为默认值
 
 参考代码：
@@ -212,28 +241,39 @@ Class class = Class.forName("java.lang.String");
 加载完类之后，在堆内存的方法区中就产生了一个 Class 类型的对象（一个类只有一个 Class 对象），这个对象就包含了完整类的类的结构信息。我们可以通过这个对象看到的类的结构。这个对象就像一面镜子，通过这个镜子看到类的结构，所以，我们形象地称之为：反射。
 
 - 正常方式：1.引入需要的“包类”名称   ——>   2.通过 new 实例化   ——>   3.取得实例化对象
+
 - 反射方式：1.实例化对象   ——>   2.getClass( ) 方法   ——>   3.得到完整的“包类”名称
 
 ### 三、反射机制提供的功能
 
 - 在运行时判断任意一个对象所属的类
+
 - 在运行时构造任意一个类的对象
+
 - 在运行时判断任意一个类所具有的成员变量和方法
+
 - 在运行时获取泛型信息
+
 - 在运行时调用任意一个对象的成员变量和方法
+
 - 在运行时处理注解
+
 - 生成动态代理
 
 ### 四、反射的优缺点
 
 - **优点：** 可以实现动态创建对象和编译，体现出很大的灵活性
+
 - **缺点：** 对性能有影响。使用反射基本上是一种解释操作，我们可以告诉 JVM，我们希望做什么并且它满足我们什么要求，这类操作总是慢于直接执行相同的操作
 
 ### 五、反射相关的主要API
 
 - java.lang.Class 代表一个类
+
 - java.lang.reflect.Method 代表类的方法
+
 - java.lang.reflect.Field 代表类的成员变量
+
 - java.lang.reflect.Constructor 代表类的构造器
 
 ------
@@ -336,11 +376,17 @@ public final native Class<?> getClass();
 对于每个类而言，JRE 都为其保留了一个不变的 Class 类型的对象。一个 Class 对象包含了特定某个结构（class、interface、enum、annotation、primitive type、void、[]）
 
 - Class 本身也是一个类
+
 - Class 对象只能由系统建立对象
+
 - <span style="color:red;">一个加载的类在 JVM 中只会有一个 Class 实例</span>
+
 - 一个 Class 对象对应的是一个加载到 JVM 中的一个 .class 文件
+
 - 每个类的实例都会记得自己是由哪个 Class 实例所生成
+
 - 通过 Class 可以完整地得到一个类中的所有被加载的结构
+
 - Class 类是 Reflection 的根源，针对任何你想动态加载、运行的类、唯有先获得响应的 Class 对象
 
 ### 二、Class 类的常用方法
@@ -364,11 +410,17 @@ public final native Class<?> getClass();
 拥有Class对象的类型有：
 
 - class：外部类、成员（成员内部类、静态内部类）、局部内部类、匿名内部类
+
 - interface：接口
+
 - []：数组
+
 - enum：枚举
+
 - annotation：注解 @interface
+
 - primitive type：基本数据类型
+
 - void
 
 测试代码：
