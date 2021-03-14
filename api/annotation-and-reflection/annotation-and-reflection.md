@@ -969,3 +969,519 @@ class B {
 
 # 类加载器
 
+- **类加载** ：将class文件字节码内容加载到内存中，并将这些静态数据转换成方法区的运行时数据结构，然后在堆中生成这个类的Class对象，作为方法区中类数据的访问入口
+
+- **类缓存** ：标准的 JavaSE 类加载器可以按要求查找类，但一旦某个类被加载到类加载器中，它将维持加载（缓存）一段时间。不过 JVM 垃圾回收机制可以回收这些 Class 对象。
+
+  
+
+  ![](../../images/annotation-and-reflection/2103938968-811b450b6bb976c1.png)
+
+  
+
+- **JVM 规范定义了如下类加载器** : 
+
+  
+
+  - **启动类加载器** **( Bootstrap Classloader )** ：是嵌在 JVM 内核中的加载器，该加载器是用C++语言写的，主要负责加载JAVA_HOME/lib下的类库，启动类加载器无法被应用程序直接使用。
+
+    
+
+  - **扩展类加载器 ( Extension ClassLoader )** : 它负责加载JRE的扩展目录，lib/ext或者由java.ext.dirs系统属性指定的目录中的Jar包的类。
+
+    
+
+  - **系统类加载器 ( System ClassLoader )** ，也称**应用程序加载器 ( Application ClassLoader )** : 它负责 java -classpath 或 -D java.class.path 所指的目录下的类与 jar 包装入工作，是最常用的类加载器。
+
+<img src="../../images/annotation-and-reflection/WX20210314-223301@2x.png" style="zoom: 50%;" />
+
+**<span style="color:red;">双亲委派机制</span>** ：如果一个类加载器收到了类加载请求，它并不会自己先去加载，而是把这个请求委托给父类的加载器去执行。如果父类加载器还存在其父类加载器，则进一步向上委托，依次递归，请求最终将到达顶层的启动类加载器。如果父类加载器可以完成类加载任务，就成功返回，倘若父类加载器无法完成此加载任务，子加载器才会尝试自己去加载。
+
+
+​	获取几种类加载器参考代码：
+
+```java
+public class TestThreeClassLoaders {
+
+    public static void main(String[] args) throws ClassNotFoundException {
+        //  获取系统类加载器（应用程序加载器），输出AppClassLoader，说明系统类加载器就是应用程序类加载器
+        ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
+        System.out.println(systemClassLoader);
+
+        //  获取扩展类加载器 （系统类加载器的父类加载器），输出ExtClassLoader，说明系统类加载器的上层是扩展类加载器
+        ClassLoader extensionClassLoader = systemClassLoader.getParent();
+        System.out.println(extensionClassLoader);
+
+        //  获取启动类加载器 （扩展类加载器的父类加载器），输出null，获取不到引导类加载器，说明扩展类加载器的上层是引导类加载器
+        ClassLoader bootstrapClassLoader = extensionClassLoader.getParent();
+        System.out.println(bootstrapClassLoader);
+
+        //  测试当前类是由哪个加载器加载，输出AppClassLoader，说明对于用户自定义类来说，默认使用系统类加载器进行加载
+        ClassLoader currentClassLoader = TestThreeClassLoaders.class.getClassLoader();
+        System.out.println(currentClassLoader);
+
+        //  测试JDK内置的类是由哪个加载器加载，输出null，Java的核心类库都是使用引导类加载器进行加载的
+        ClassLoader jdkObjectClassLoader = Class.forName("java.lang.Object").getClassLoader();
+        System.out.println(jdkObjectClassLoader);
+    }
+
+}
+```
+
+
+运行结果：
+
+![](../../images/annotation-and-reflection/WX20210314-225141@2x.png)
+
+------
+
+
+
+# 获取类的运行时结构
+
+实体类 **Person **：
+
+```java
+public class Person {
+
+    public String id;
+
+    public String name;
+
+    private int age;
+
+    public Person() {
+
+    }
+
+    private Person(int age) {
+        this.age = age;
+    }
+
+    public Person(String id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    private int getAge() {
+        return age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+}
+```
+
+获得运行时类的结构参考代码：
+
+```java
+public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException, NoSuchMethodException {
+
+        Class personClass = Class.forName("com.tao.annotationandreflection.reflection.entity.Person");
+        //  获得类的名字 (包名 + 类名)
+        String packageName = personClass.getName();
+        System.out.println("获得类的名字 (包名 + 类名)： " + packageName);
+
+        //  获得类的名字 (类名)
+        packageName = personClass.getSimpleName();
+        System.out.println("获得类的名字 (类名)： " + packageName);
+
+        //  获得类的public属性 (只可获取public属性)
+        Field[] fields = personClass.getFields();
+        for (Field field : fields) {
+            System.out.println("获得类的public属性： " + field);
+        }
+
+        //  获得类的所有属性
+        fields = personClass.getDeclaredFields();
+        for (Field field : fields) {
+            System.out.println("获得类的所有属性：" + field);
+        }
+
+        //  获得类的指定public属性 (只可获取public属性)
+        Field nameField = personClass.getField("name");
+        System.out.println("获得类的public属性：" + nameField);
+
+        //  获得类的指定属性
+        nameField = personClass.getDeclaredField("age");
+        System.out.println("获得类的指定属性：" + nameField);
+
+        //  获得类的public方法及其父类的方法 (只可获取public方法)
+        Method[] method = personClass.getMethods();
+        for (Method method1 : method) {
+            System.out.println("获得类的public方法及其父类的方法：" + method1);
+        }
+
+        //  获得类的所有方法
+        method = personClass.getDeclaredMethods();
+        for (Method method1 : method) {
+            System.out.println("获得类的所有方法：" + method1);
+        }
+
+        //  获得类的指定public方法 (只可获取public方法)
+        Method getNameMethod = personClass.getMethod("getName", null);
+        System.out.println("获得类的指定public方法：" + getNameMethod);
+        Method setNameMethod = personClass.getMethod("setName", String.class);
+        System.out.println("获得类的指定public方法：" + setNameMethod);
+
+        //  获得类的指定方法
+        Method getAgeMethod = personClass.getDeclaredMethod("getAge", null);
+        System.out.println("获得类的指定方法：" + getAgeMethod);
+
+        //  获得类的public构造器 （只可获取public构造器）
+        Constructor[] constructors = personClass.getConstructors();
+        for (Constructor constructor : constructors) {
+            System.out.println("获得类的public构造器：" + constructor);
+        }
+
+        //  获得类的所有构造器
+        constructors = personClass.getDeclaredConstructors();
+        for (Constructor constructor : constructors) {
+            System.out.println("获得类的所有构造器：" + constructor);
+        }
+
+        //  获得指定的public构造器 (只可获取public构造器)
+        Constructor constructor = personClass.getConstructor(String.class, String.class, int.class);
+        System.out.println("获得指定的public构造器：" + constructor);
+
+        //  获得指定的构造器
+        constructor = personClass.getDeclaredConstructor(int.class);
+        System.out.println("获得指定的构造器：" + constructor);
+
+    }
+```
+
+------
+
+
+
+# 动态创建对象并执行方法
+
+有了 **Class** 对象后，我们能做什么？
+
+- **创建类的对象** ：1. new Instance( ) 方法（依赖于有无参构造方法，且构造器的访问权限足够）     2. getConstructor( ) / getDeclaredConstructor( ) 方法
+
+  
+
+- **调用指定方法** ：1. getMethod( ) / getDeclaredMethod( ) 方法     2.使用 Object 的 invoke( )方法进行传参调用
+
+创建类的对象参考代码：
+
+```java
+public static void testGetObjectInstance() throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+        Class personClass = Class.forName("com.tao.annotationandreflection.reflection.entity.Person");
+        //  方式1：new Instance()，必须要有无参构造函数且构造器的访问权限需要足够
+        Person person = (Person) personClass.newInstance();
+        System.out.println(person);
+
+        //  方式2：构造器
+        Constructor constructor = personClass.getDeclaredConstructor(String.class, String.class, int.class);
+        Person person1 = (Person) constructor.newInstance("0001", "Tao", 18);
+        System.out.println(person1);
+}
+```
+
+调用类的方法参考代码：
+
+```java
+public static void testInvokeObjectMethid() throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException {
+        Class personClass = Class.forName("com.tao.annotationandreflection.reflection.entity.Person");
+        Person person = (Person) personClass.newInstance();
+        //  反射获得一个方法
+        Method setNameMethod = personClass.getDeclaredMethod("setName", String.class);
+        //  invoke调用一个方法，invoke(对象,方法的值)
+        setNameMethod.invoke(person, "Tao");
+        System.out.println(person);
+
+        Field age = personClass.getDeclaredField("age");
+  			//	不能直接操作私有属性及方法...,需关闭程序的安全检查，设置可访问为true，否则报错
+        age.setAccessible(true);
+        age.set(person, 18);
+        System.out.println(person);
+        
+}
+```
+
+**Object invoke(Object object ,Object... args)** : 
+
+- Object 对应原方法的返回值，若原方法无返回值，此时返回null
+  
+-  若原方法为静态方法，此时形参Object object可为null
+
+- 若原方法形参列表为空，则Object[]  args为null
+
+- 若原方法声明为private，则需在调用此 invoke( ) 方法前，显式调用此方法的 setAccessible(true) 方法，即可访问 private 的方法
+
+**setAccessible( )** :
+
+- Method、Field、Constructor对象都有 setAccessible( ) 方法
+
+- setAccessible( ) 的作用是启动和禁用访问安全检查的开关
+
+- 数值为true，则指示反射的对象在使用时取消Java语言访问检查，提高了反射的效率，使得原本无法访问的私有成员也可以访问
+
+------
+
+
+
+# 性能对比分析
+
+三种方式性能对比（普通方式、反射开启检查]、反射关闭检查）
+
+```java
+public class TestPerformance {
+
+    /**
+     * 普通方式
+     */
+    public static void normal() {
+        Person person = new Person("0001", "Tao", 10);
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 100000000; i++) {
+            person.getName();
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("普通方式执行一亿次需要：" + (endTime - startTime) + " ms");
+    }
+
+    /**
+     * 反射方式，检查开启
+     *
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     * @throws NoSuchMethodException
+     */
+    public static void reflectionWithCheck() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Person person = new Person("0001", "Tao", 10);
+        Class personClass = person.getClass();
+        Method getNameMethod = personClass.getDeclaredMethod("getName", null);
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 100000000; i++) {
+            getNameMethod.invoke(person, null);
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("反射方式检查开启执行一亿次需要：" + (endTime - startTime) + " ms");
+    }
+
+    /**
+     * 反射方式，检查关闭
+     *
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     * @throws NoSuchMethodException
+     */
+    public static void reflectionWithoutCheck() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Person person = new Person("0001", "Tao", 10);
+        Class personClass = person.getClass();
+        Method getNameMethod = personClass.getDeclaredMethod("getName", null);
+        getNameMethod.setAccessible(true);
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 100000000; i++) {
+            getNameMethod.invoke(person, null);
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("反射方式检查开启执行一亿次需要：" + (endTime - startTime) + " ms");
+    }
+
+    public static void main(String[] args) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        normal();
+        reflectionWithCheck();
+        reflectionWithoutCheck();
+    }
+
+}
+```
+
+运行结果：
+
+![](../../images/annotation-and-reflection/WX20210315-010402@2x.png)
+
+**<span style="color:red;">说明：setAccessible( ) 数值为true，则指示反射的对象在使用时取消Java语言访问检查，提高了反射的效率。</span>**
+
+------
+
+
+
+# 获取泛型信息
+
+- Java 采用泛型擦除机制来引入泛型，Java 中的泛型仅仅是给编译器 javac 使用的，一旦编译完成，所有和泛型有关的类型全部擦除
+
+- 为了通过反射操作这些类型，Java 新增了 Parameterized、GenericArrayType、TypeVariable 和 WildcardType 几种类型来表示不能被归纳到 Class 类中的类型但是又和原始类型齐名的类型
+
+- Parameterized：表示一种参数化类型，比如 Collection<String>
+
+- GenericArrayType：表示一种元素类型是参数化类型或者类型变量的数组类型
+
+- TypeVariable：是各种类型变量的公共父接口
+
+- WildCardType：代表一种通配符类型表达式
+
+参考代码：
+
+```java
+public class TestGetGenericType {
+
+    public void test1(Map<String, Person> map, List<Person> list) {
+        System.out.println("test1...");
+    }
+
+    public Map<String, Person> test2() {
+        System.out.println("test2...");
+        return null;
+    }
+
+    public static void main(String[] args) throws NoSuchMethodException, SecurityException {
+        Method method = TestGetGenericType.class.getMethod("test1", Map.class, List.class);
+        Type[] genericParameterTypes = method.getGenericParameterTypes();
+        for (Type genericParameterType : genericParameterTypes) {
+            System.out.println("#" + genericParameterType);
+            if (genericParameterType instanceof ParameterizedType) {
+                Type[] actualTypeArguments = ((ParameterizedType) genericParameterType).getActualTypeArguments();
+                for (Type actualTypeArgument : actualTypeArguments) {
+                    System.out.println(actualTypeArgument);
+                }
+            }
+        }
+
+        method = TestGetGenericType.class.getMethod("test2", null);
+        Type genericReturnType = method.getGenericReturnType();
+        if (genericReturnType instanceof ParameterizedType) {
+            Type[] actualTypeArguments = ((ParameterizedType) genericReturnType).getActualTypeArguments();
+            for (Type actualTypeArgument : actualTypeArguments) {
+                System.out.println(actualTypeArgument);
+            }
+        }
+    }
+
+}
+```
+
+运行结果：
+
+![](../../images/annotation-and-reflection/WX20210315-011828@2x.png)
+
+------
+
+
+
+# 获取注解信息
+
+这里以 **ORM ( Object Relationship Mapping ) ** 为例：对象关系映射
+
+- 类和表结构对应
+- 属性和字段对应
+- 对象和记录对应
+
+参考代码：
+
+```java
+public class TestGetAnnotation {
+
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException, SecurityException {
+        Class studentClass = Class.forName("com.tao.annotationandreflection.reflection.Student");
+
+        //  通过反射获得注解
+        Annotation[] annotations = studentClass.getAnnotations();
+        for (Annotation annotation : annotations) {
+            System.out.println("获取到的Student类上的注解：" + annotation);
+        }
+
+        //  获取注解的value值
+        TableName table = (TableName) studentClass.getAnnotation(TableName.class);
+        String tableName = table.value();
+        System.out.println("获取到的Student类上的注解TableName的值为：" + tableName);
+
+        //  获取Student类指定属性上的注解
+        Field fidld = studentClass.getDeclaredField("name");
+        FieldName annotation = fidld.getAnnotation(FieldName.class);
+        System.out.println(annotation.columnName());
+        System.out.println(annotation.type());
+        System.out.println(annotation.length());
+    }
+
+}
+
+@TableName("db_student")
+class Student {
+
+    @FieldName(columnName = "db_id", type = "int", length = 10)
+    private int id;
+
+    @FieldName(columnName = "db_age", type = "int", length = 3)
+    private int age;
+
+    @FieldName(columnName = "db_name", type = "varchar", length = 10)
+    private String name;
+
+    public Student() {
+        super();
+    }
+
+    public Student(int id, int age, String name) {
+        super();
+        this.id = id;
+        this.age = age;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Student [id=" + id + ", age=" + age + ", name=" + name + "]";
+    }
+
+}
+
+/**
+ * 类注解：表名
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@interface TableName {
+    String value();
+}
+
+/**
+ * 属性注解：字段映射
+ */
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+@interface FieldName {
+    String columnName();
+
+    String type();
+
+    int length();
+}
+```
+
+运行结果：
+
+![](../../images/annotation-and-reflection/WX20210315-013124@2x.png)
