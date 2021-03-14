@@ -660,3 +660,312 @@ public void testWays() throws ClassNotFoundException {
 
 # 类加载内存分析
 
+### 一、Java 内存分析
+
+![](../../images/annotation-and-reflection/20200801222632166.png)
+
+
+
+### 二、类的加载过程
+
+当程序主动使用某个类时，如果该类还未被加载到内存中，则系统会通过如下三个步骤来对该类进行初始化。
+
+![](../../images/annotation-and-reflection/4065405923-82eb91c2d0bd2e75.png)
+
+- 加载：将 .class 文件字节码内容加载到内存中，并将这些静态数据转换成方法区的运行时数据结构，然后生成一个代表这个类的 java.lang.Class 对象
+
+  
+
+- 链接：将 Java 类的二进制代码合并到 JVM 的运行状态之中的过程
+
+  
+
+  - 验证：确保加载的类信息符合 JVM 规范，没有安全方面的问题
+
+    
+
+  - 准备：正式为类变量（static）分配内存并设置类变量默认初始值的阶段，这些内存都将在方法区中进行分配
+
+    
+
+  - 解析：虚拟机常量池内的符号引用（常量名）替换为直接引用（地址）的过程
+
+    
+
+- 初始化：
+
+  
+
+  - 执行类构造器< clint>() 方法的过程，类构造器< clint>() 方法是由编译期自动收集类中所有类变量的赋值动作和静态代码块中的语句合并产生的（类构造器是构造类信息的，不是构造该类对象的构造器）
+
+    
+
+  - 当初始化一个类的时候，如果发现其父类还没有进行初始化，则需要先触发其父类的初始化
+
+    
+
+  - 虚拟机会保证一个类的< clint>() 方法在多线程环境中被正确加锁和同步
+
+    
+
+测试代码：
+
+```java
+public class TestClassLoaderProcess {
+
+    public static void main(String[] args) {
+      	//	该打印可说明Java中的静态变量和静态代码块是在类加载的时候就执行（无需初始化），其结果反映 < clint>() 方法
+        System.out.println(A.m);				
+        A a = new A();
+        System.out.println(A.m);
+        System.out.println("-------------------");
+        B b = new B();
+        System.out.println(B.m);
+    }
+
+}
+
+class A {
+
+    static {
+        System.out.println("进入A的静态代码块方法...");
+        m = 200;
+    }
+
+    static int m = 100;
+
+    public A() {
+        System.out.println("进入A的无参构造方法...");
+    }
+
+}
+
+class B {
+
+    static int m = 100;
+
+    static {
+        System.out.println("进入B的静态代码块方法...");
+        m = 200;
+    }
+
+    public B() {
+        System.out.println("进入B的无参构造方法...");
+    }
+
+}
+```
+
+运行结果：
+
+![](../../images/annotation-and-reflection/WX20210314-172934@2x.png)
+
+观察程序运行结果可发现：
+
+1. <span style="color:red;">Java 中的静态变量和静态代码块是在类加载的时候就执行的</span> ( 在未初始化A对象之前，即可调用 A.m )
+
+2. <span style="color:red;">执行类构造器 < clint>() 方法过程中，编译器自动收集类中所有类变量的赋值动作和静态代码块中的语句，并将其合并</span> （ 打印第一句A.m ）
+
+3. <span style="color:red;">静态变量和静态代码块也是有执行顺序的，与代码书写的顺序一致</span> （A 类和 B 类中静态变量和静态代码块书写顺序不同导致的打印m结果不同）
+
+   
+
+图解：
+
+![](../../images/annotation-and-reflection/WX20210314-180858@2x.png)
+
+
+
+总结（以A类为例）：
+
+1. 将字节码文件加载到内存中，并且生成一个与类对应的Class对象
+
+   
+
+2. 链接，链接结束后 m = 0
+
+   
+
+3. 初始化 < clint>() 合并 {
+
+   ​	System.out.println("进入A的静态代码块方法...")；
+
+   ​	m = 200;
+
+   ​	m = 100;
+
+   }
+
+------
+
+
+
+# 分析类初始化
+
+什么时候会发生类的初始化？
+
+- 类的主动引用
+
+  
+
+  - 当虚拟机启动，先初始化 main( ) 方法所在的类
+    
+
+  - new 一个类的对象
+
+    
+
+  - 调用类的静态变量（除了 final 常量）和静态方法
+
+    
+
+  - 使用 java.lang.reflect 包的方法对类进行反射调用
+
+  
+
+  - 当初始化一个类，其父类还未被初始化，则会先初始化它的父类
+
+  
+
+- 类的被动引用
+
+  
+
+  - 当访问一个静态域时，只有真正声明这个域的类才会被初始化。如：当通过子类引用父类的静态变量，不会导致子类初始化
+
+  
+
+  - 通过数组定义类引用，不会触发此类的初始化
+
+  
+
+  - 引用常量不会触发此类的初始化（常量在链接阶段就存入调用类的常量池中）
+
+  
+
+  测试代码：
+
+  ```java
+  public class TestWhenClassInit {
+  
+      static {
+          System.out.println("main()所在类被加载...");
+      }
+  
+  
+      public static void main(String[] args) throws ClassNotFoundException {
+          //  主动引用: 1.new一个类的对象
+          Son son = new Son();
+          //  主动引用: 2.反射
+          Class c1 = Class.forName("com.tao.annotationandreflection.reflection.Son");
+          //  主动引用: 3.调用类的静态变量（除了 final 常量）和静态方法
+          System.out.println(Son.n);
+  
+          //  被动引用: 1.通过子类引用父类的静态变量，不会导致子类初始化
+          System.out.println(Son.m);
+          //  被动引用: 2.引用常量不会触发此类的初始化
+          System.out.println(Son.N);
+          //  被动引用: 3.通过数组定义类引用，不会触发此类的初始化 (这里只是分配了内存)
+          Son[] array = new Son[3];
+      }
+  
+  }
+  
+  class Father {
+  
+      static {
+          System.out.println("父类Father被加载...");
+      }
+  
+      static int m = 0;
+  
+  }
+  
+  class Son extends Father {
+  
+      static {
+          System.out.println("子类Son被加载...");
+          n = 200;
+      }
+  
+      static int n = 100;
+  
+      static final int N = 10;
+  
+  }
+  ```
+
+  运行结果：
+
+  
+
+  ```java
+   public static void main(String[] args) throws ClassNotFoundException {
+   		//  主动引用: 1.new一个类的对象
+  		Son son = new Son();
+   }
+  ```
+
+  ![](../../images/annotation-and-reflection/WX20210314-190022@2x.png)
+
+  
+
+  ```java
+  public static void main(String[] args) throws ClassNotFoundException {
+  		//  主动引用: 2.反射      
+  		Class c1 = Class.forName("com.tao.annotationandreflection.reflection.Son");
+  }
+  ```
+
+  ![](../../images/annotation-and-reflection/WX20210314-190245@2x.png)
+
+  
+
+  ```java
+  public static void main(String[] args) throws ClassNotFoundException {
+  		//  主动引用: 3.调用类的静态变量（除了 final 常量）和静态方法 
+  		System.out.println(Son.n);
+  }
+  ```
+
+  ![](../../images/annotation-and-reflection/WX20210314-190408@2x.png)
+
+  
+
+  ```java
+  public static void main(String[] args) throws ClassNotFoundException {
+  		//  被动引用: 1.通过子类引用父类的静态变量，不会导致子类初始化
+  		System.out.println(Son.m);
+  }
+  ```
+
+  ![](../../images/annotation-and-reflection/WX20210314-190521@2x.png)
+
+  
+
+  ```java
+  public static void main(String[] args) throws ClassNotFoundException {
+  		//  被动引用: 2.引用常量不会触发此类的初始化
+  		System.out.println(Son.N);
+  }
+  ```
+
+  ![](../../images/annotation-and-reflection/WX20210314-190626@2x.png)
+
+  
+
+  ```java
+  public static void main(String[] args) throws ClassNotFoundException {
+  		//  被动引用: 3.通过数组定义类引用，不会触发此类的初始化 (这里只是分配了内存)
+  		Son[] array = new Son[3];
+  }
+  ```
+
+  ![](../../images/annotation-and-reflection/WX20210314-190744@2x.png)
+
+------
+
+
+
+# 类加载器
+
