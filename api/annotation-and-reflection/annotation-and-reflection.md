@@ -6,13 +6,28 @@
 
 ### 一、注解简介（Java.Annotation）
 
-- Annotation是从JDK5.0以后引入的新技术
-- Annotation的作用
+- Annotation 是从JDK5.0以后引入的新技术
+
+  
+
+- Annotation 的作用
+
+  
+
   - 不是程序本身，可以对程序作出解释（这一点和注解（comment）没什么区别）
+
+    
+
   - <span style="color:red;">可以被其他程序（比如：编译器）读取</span>
-- Annotation的格式：
+
+    
+
+- Annotation 的格式：
+
   - 注解是以“@注释名”在代码中存在的，还可以添加一些参数值，例如：@SuppressWarnings(value="unchecked")
-- Annotation在哪里使用？
+
+- Annotation 在哪里使用？
+
   - 可以附加在 package、class、method、field 等上面，相当于给他们添加了额外的辅助信息，我们可以通过反射机制编程实现对这些元数据的访问 
 
 ### 二、注解分类
