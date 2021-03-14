@@ -1039,7 +1039,7 @@ public class TestThreeClassLoaders {
 
 # 获取类的运行时结构
 
-实体类 **Person **：
+实体类 Person ：
 
 ```java
 public class Person {
@@ -1397,7 +1397,9 @@ public class TestGetGenericType {
 这里以 **ORM ( Object Relationship Mapping ) ** 为例：对象关系映射
 
 - 类和表结构对应
+  
 - 属性和字段对应
+  
 - 对象和记录对应
 
 参考代码：
