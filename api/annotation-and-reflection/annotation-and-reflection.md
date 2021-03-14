@@ -1394,7 +1394,7 @@ public class TestGetGenericType {
 
 # 获取注解信息
 
-这里以 **ORM ( Object Relationship Mapping ) ** 为例：对象关系映射
+这里以 ORM ( Object Relationship Mapping )  为例：对象关系映射
 
 - 类和表结构对应
   
